@@ -1,5 +1,5 @@
 # YADC (Yet Another Dungeon Crawler)
-This is a group project for a Game Design Class that is being built in Unity
+This is a group project for a Game Design Class and the Game Engine being used is Unity
 
 ## Version of Unity being used
 Unity LTS Release 2021.3.9f1
