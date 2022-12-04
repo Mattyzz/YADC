@@ -4,35 +4,89 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public Transform player;
+    public float lerpSpeed;
 
-    public Transform target;
-    public float lerpSpeed; // lerp allows for smooth movement
-
-    //Limits how much the camera can follow the player
     Vector3 tempPosition;
     [SerializeField]
     float minX, minY, maxX, maxY;
-
-    // Update is called once per frame
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     void FixedUpdate()
     {
-        if (target == null) return;
-        tempPosition = target.position;
+        if (player == null)
+        {
+            return;
+        }
+        tempPosition = player.position;
         tempPosition.z = -10;
 
-        //Camera hits min position
-        if (target.position.x < minX)
+        if (player.position.x < minX)
+        {
             tempPosition.x = minX;
-        if (target.position.y < minY)
+        }
+        if (player.position.y < minY)
+        {
             tempPosition.y = minY;
-
-        //Camera hits max position
-        if (target.position.x > maxX)
+        }
+        if (player.position.x > maxX)
+        {
             tempPosition.x = maxX;
-        if (target.position.y > maxY)
+        }
+        if (player.position.y > maxY)
+        {
             tempPosition.y = maxY;
-
-        //Smooth movement of the camera
+        }
         transform.position = Vector3.Lerp(transform.position, tempPosition, lerpSpeed * Time.deltaTime);
     }
-}
+
+    //***********************************  Old camera Script ************************************************//
+    /*
+    private Transform player;
+
+    private Vector3 tempPos;
+
+    [SerializeField]
+    private float minX, maxX;
+
+
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+    }
+
+    // LateUpdate is called every time the calculation on update is finished
+    void LateUpdate()
+    {
+        tempPos = transform.position;
+        tempPos.x = player.position.x;
+        tempPos.y = player.position.y;
+
+        if(tempPos.x < minX)
+        {
+            tempPos.x = minX;
+        }
+        if(tempPos.y > maxX)
+        {
+            tempPos.y = maxX;
+        }
+
+
+
+        transform.position = tempPos;
+
+
+
+    }
+    */
+
+
+
+
+}// class
+
