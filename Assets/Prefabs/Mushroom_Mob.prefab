@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2122410051056483102}
   - component: {fileID: 7504849209193961588}
   - component: {fileID: 6426273666560675242}
+  - component: {fileID: 7421715575134691246}
   m_Layer: 0
   m_Name: Mushroom_Mob
   m_TagString: Untagged
@@ -144,3 +145,40 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7421715575134691246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5084118082731354319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c6350051468c44dbcf09afe9ff81e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2d: {fileID: 0}
+  tran: {fileID: 0}
+  capCollider: {fileID: 0}
+  anim: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  damageLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  speed: 2
+  direction: 1
+  health: 2
+  viewRange: 10
+  extraRaycastLength: 6
+  isMoving: 0
+  damage: 1
+  isInPain: 0
+  lootDrop: {fileID: 0}

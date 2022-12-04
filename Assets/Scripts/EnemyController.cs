@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController: MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class EnemyController: MonoBehaviour
     [SerializeField]
     protected LayerMask groundLayer, damageLayer, playerLayer, enemyLayer;
     [SerializeField]
-    protected float speed = 2f, direction = 1f, health = 2f, viewRange = 10f;
+    protected float speed = 2f, direction = 1f,viewRange = 10f;
     [SerializeField]
     protected float extraRaycastLength = 6f;// This is the extra length from the rigidbody that the raycast extends to detect the ground. It should be just below the rb in most cases.
 
@@ -26,6 +28,12 @@ public class EnemyController: MonoBehaviour
     public bool isInPain;
 
     protected HeroKnight player;
+
+    public Image healthImage;
+
+    //Health Stuff
+    public float maxHealth;
+    float health;
 
     // Loot!
     [SerializeField]
@@ -38,9 +46,18 @@ public class EnemyController: MonoBehaviour
         capCollider = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
         player = FindObjectOfType<HeroKnight>();
+        health = maxHealth;
+
     }
 
-    protected void moveRB()
+
+    void Update()
+    {
+        //Health Bar Update
+        healthImage.fillAmount = Mathf.Lerp(healthImage.fillAmount, health / maxHealth, Time.deltaTime * 10);
+
+    }
+        protected void moveRB()
     {
         rb2d.velocity = new Vector2(direction * speed, rb2d.velocity.y);
         isMoving = true;

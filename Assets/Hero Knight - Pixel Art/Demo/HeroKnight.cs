@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class HeroKnight : MonoBehaviour {
 
@@ -35,6 +38,8 @@ public class HeroKnight : MonoBehaviour {
     public float timeBetweenDamage;
     float iframe;
 
+    public Image healthImage;
+
     // Use this for initialization
     void Start ()
     {
@@ -53,6 +58,9 @@ public class HeroKnight : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        //Health Bar Update
+        healthImage.fillAmount = Mathf.Lerp(healthImage.fillAmount, health / maxHealth, Time.deltaTime * 10);
+
         if (iframe > 0) iframe -= Time.deltaTime;
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
@@ -198,13 +206,26 @@ public class HeroKnight : MonoBehaviour {
             Invoke("resetHurt", 0.2f);
             m_animator.SetTrigger("Hurt");
 
-            /*if (health <= 0)
+            if (health <= 0)
             {
-                //Game Lose
-                //GameOver();
-            }*/
+                Debug.Log("Player has Died");
+                StartCoroutine(Die());
+            }
+
             iframe = timeBetweenDamage;
         }
+
+
+    }
+
+    private IEnumerator Die()
+    {
+        m_animator.SetBool("noBlood", m_noBlood);
+        m_animator.SetTrigger("Death");
+
+        yield return new WaitForSeconds(1);
+
+        Time.timeScale = 0f;
 
 
     }

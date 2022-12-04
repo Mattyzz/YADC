@@ -18,10 +18,12 @@ public class PlayerController : MonoBehaviour
 
     bool hurt;
     public float maxHealth;
+
     [SerializeField]
     float health;
     public float timeBetweenDamage;
     float iframe;
+
 
     Animator anim;
 
