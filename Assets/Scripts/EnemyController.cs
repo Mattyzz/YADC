@@ -25,6 +25,8 @@ public class EnemyController: MonoBehaviour
 
     public bool isInPain;
 
+    protected HeroKnight player;
+
     // Loot!
     [SerializeField]
     protected GameObject lootDrop;
@@ -35,6 +37,7 @@ public class EnemyController: MonoBehaviour
         tran = GetComponent<Transform>();
         capCollider = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
+        player = FindObjectOfType<HeroKnight>();
     }
 
     protected void moveRB()
@@ -175,9 +178,9 @@ public class EnemyController: MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
-            collision.collider.SendMessage("takeDamage", damage);
+            collision.gameObject.GetComponent<HeroKnight>().takeDamage(damage);
         }
     }
 

@@ -26,6 +26,14 @@ public class HeroKnight : MonoBehaviour {
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
 
+    //Copied from Player Controller
+
+    bool hurt;
+    public float maxHealth;
+    [SerializeField]
+    float health;
+    public float timeBetweenDamage;
+    float iframe;
 
     // Use this for initialization
     void Start ()
@@ -37,11 +45,15 @@ public class HeroKnight : MonoBehaviour {
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
+        health = maxHealth;
+        hurt = false;
+        iframe = timeBetweenDamage;
     }
 
     // Update is called once per frame
     void Update ()
     {
+        if (iframe > 0) iframe -= Time.deltaTime;
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -103,8 +115,11 @@ public class HeroKnight : MonoBehaviour {
         }
             
         //Hurt
-        else if (Input.GetKeyDown("q") && !m_rolling)
-            m_animator.SetTrigger("Hurt");
+        /*else if (Input.GetKeyDown("q") && !m_rolling)
+           m_animator.SetTrigger("Hurt");
+        */
+
+
 
         //Attack
         else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
@@ -172,7 +187,31 @@ public class HeroKnight : MonoBehaviour {
                     m_animator.SetInteger("AnimState", 0);
         }
     }
+    //Damage Functrion
+    public void takeDamage(float damageAmmount)
+    {
+        if (iframe < 0)
+        {
+            Debug.Log("Player Took Damage");
+            health -= damageAmmount;
+            hurt = true;
+            Invoke("resetHurt", 0.2f);
+            m_animator.SetTrigger("Hurt");
 
+            /*if (health <= 0)
+            {
+                //Game Lose
+                //GameOver();
+            }*/
+            iframe = timeBetweenDamage;
+        }
+
+
+    }
+    void resetHurt()
+    {
+        hurt = false;
+    }
     // Animation Events
     // Called in slide animation.
     void AE_SlideDust()
