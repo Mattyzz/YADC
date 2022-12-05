@@ -12,6 +12,9 @@ public class HeroKnight : MonoBehaviour {
     [SerializeField] bool       m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
 
+    [SerializeField]
+    protected LayerMask groundLayer, damageLayer, playerLayer, enemyLayer;
+
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
     private Sensor_HeroKnight   m_groundSensor;
@@ -19,6 +22,8 @@ public class HeroKnight : MonoBehaviour {
     private Sensor_HeroKnight   m_wallSensorR2;
     private Sensor_HeroKnight   m_wallSensorL1;
     private Sensor_HeroKnight   m_wallSensorL2;
+    [SerializeField]
+    private BoxCollider2D       hitBox;
     private bool                m_isWallSliding = false;
     private bool                m_grounded = false;
     private bool                m_rolling = false;
@@ -37,6 +42,9 @@ public class HeroKnight : MonoBehaviour {
     float health;
     public float timeBetweenDamage;
     float iframe;
+    public float damage;
+    float damagePerHit;
+
 
     public Image healthImage;
 
@@ -53,6 +61,8 @@ public class HeroKnight : MonoBehaviour {
         health = maxHealth;
         hurt = false;
         iframe = timeBetweenDamage;
+        damagePerHit = damage;
+        hitBox = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -229,6 +239,16 @@ public class HeroKnight : MonoBehaviour {
 
 
     }
+
+    void OnCollisionTrigger2D(Collider2D col)
+    {
+        Debug.Log("Sword Collided with" + col.name);
+        if (col.IsTouchingLayers(damageLayer))
+        {
+            col.gameObject.GetComponent<EnemyController>().takeDamage(damage);
+        }
+    }
+
     void resetHurt()
     {
         hurt = false;

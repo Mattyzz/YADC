@@ -31,6 +31,9 @@ public class EnemyController: MonoBehaviour
 
     public Image healthImage;
 
+    //IFrame so you can't spam attacking
+    public float timeBetweenDamage;
+    float iframe;
     //Health Stuff
     public float maxHealth;
     float health;
@@ -41,6 +44,7 @@ public class EnemyController: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        iframe = timeBetweenDamage;
         rb2d = GetComponent<Rigidbody2D>();
         tran = GetComponent<Transform>();
         capCollider = GetComponent<CapsuleCollider2D>();
@@ -56,6 +60,9 @@ public class EnemyController: MonoBehaviour
         //Health Bar Update
         healthImage.fillAmount = Mathf.Lerp(healthImage.fillAmount, health / maxHealth, Time.deltaTime * 10);
 
+        //Iframe timer
+        if (iframe > 0) iframe -= Time.deltaTime;
+
     }
         protected void moveRB()
     {
@@ -64,20 +71,29 @@ public class EnemyController: MonoBehaviour
     }
 
 
-    protected void takeDamage(float _damage)
+    public void takeDamage(float _damage)
     {
-        //Debug.Log("Taking fire!");
-        health -= _damage;
-        anim.SetTrigger("In Pain");
         //SoundScript.play("Enemy Got Hit");
-        if (health == 0)
+        if (iframe < 0)
         {
-            if (lootDrop != null)
+            Debug.Log("Mob Took Damage");
+            health -= _damage;
+            anim.SetTrigger("In Pain");
+
+            if (health <= 0)
             {
-                Instantiate(lootDrop, gameObject.transform.position, Quaternion.identity);
+                Debug.Log("Mob has Died");
+                StartCoroutine(Die());
             }
-            Destroy(gameObject);
+
+            iframe = timeBetweenDamage;
         }
+    }
+    private IEnumerator Die()
+    {
+        anim.SetTrigger("Death");
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).speed);
+        Destroy(gameObject);
     }
 
     protected void patrol()
