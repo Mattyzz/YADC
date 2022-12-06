@@ -46,7 +46,7 @@ public class EnemyController: MonoBehaviour
     public float chaseRange;
     public float attackRange;
 
-    public enum enemystates { move, chase, attack }
+    public enum enemystates { move, chase, attack, dead }
     public enemystates currentState = enemystates.move;
 
     protected float distance;
@@ -104,6 +104,8 @@ public class EnemyController: MonoBehaviour
                 break;
             case enemystates.attack:
                 Attack();
+                break;
+            case enemystates.dead:
                 break;
         }
 
@@ -198,6 +200,7 @@ public class EnemyController: MonoBehaviour
 
             if (health <= 0)
             {
+                currentState = enemystates.dead;
                 Debug.Log("Mob has Died");
                 StartCoroutine(Die());
             }
