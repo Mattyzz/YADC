@@ -22,8 +22,8 @@ public class HeroKnight : MonoBehaviour {
     private Sensor_HeroKnight   m_wallSensorR2;
     private Sensor_HeroKnight   m_wallSensorL1;
     private Sensor_HeroKnight   m_wallSensorL2;
-    [SerializeField]
-    private BoxCollider2D       hitBox;
+
+
     private bool                m_isWallSliding = false;
     private bool                m_grounded = false;
     private bool                m_rolling = false;
@@ -34,6 +34,9 @@ public class HeroKnight : MonoBehaviour {
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
 
+
+    [SerializeField]
+    protected CapsuleCollider2D hurtBoxCapCollider;
     //Copied from Player Controller
 
     bool hurt;
@@ -62,7 +65,6 @@ public class HeroKnight : MonoBehaviour {
         hurt = false;
         iframe = timeBetweenDamage;
         damagePerHit = damage;
-        hitBox = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -72,6 +74,7 @@ public class HeroKnight : MonoBehaviour {
         healthImage.fillAmount = Mathf.Lerp(healthImage.fillAmount, health / maxHealth, Time.deltaTime * 10);
 
         if (iframe > 0) iframe -= Time.deltaTime;
+        else hurtBoxCapCollider.isTrigger = true;
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -215,17 +218,17 @@ public class HeroKnight : MonoBehaviour {
         {
             Debug.Log("Player Took Damage");
             health -= damageAmmount;
-            hurt = true;
-            Invoke("resetHurt", 0.2f);
             m_animator.SetTrigger("Hurt");
+            hurtBoxCapCollider.isTrigger = false;
+
+            iframe = timeBetweenDamage;
 
             if (health <= 0)
             {
                 Debug.Log("Player has Died");
+                hurtBoxCapCollider.isTrigger = false;
                 StartCoroutine(Die());
             }
-
-            iframe = timeBetweenDamage;
         }
 
 
@@ -233,9 +236,11 @@ public class HeroKnight : MonoBehaviour {
 
     private IEnumerator Die()
     {
+        timeBetweenDamage = 999;
+        iframe = timeBetweenDamage;
         m_animator.SetBool("noBlood", m_noBlood);
         m_animator.SetTrigger("Death");
-
+        hurtBoxCapCollider.isTrigger = false;
         yield return new WaitForSeconds(1);
 
         Time.timeScale = 0f;

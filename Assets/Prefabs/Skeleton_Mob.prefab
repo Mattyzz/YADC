@@ -291,7 +291,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1871863957
 MonoBehaviour:
@@ -414,7 +414,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -514,20 +514,7 @@ MonoBehaviour:
   tran: {fileID: 0}
   capCollider: {fileID: 0}
   anim: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  damageLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  speed: 1
-  direction: 1
+  speed: 200
   viewRange: 10
   extraRaycastLength: 6
   hurtBoxCapCollider: {fileID: 1613613554}
@@ -537,7 +524,18 @@ MonoBehaviour:
   healthImage: {fileID: 391725807}
   timeBetweenDamage: 0.25
   maxHealth: 5
-  lootDrop: {fileID: 0}
+  runSpeed: 250
+  chaseRange: 4
+  attackRange: 2
+  currentState: 0
+  direction: 1
+  timeBetweenAttacks: 0.85
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  rayLength: 1
+  scaleX: 2.3
+  scaleY: 2.3
 --- !u!1 &6565078844806242776
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 481255574168476373}
   - component: {fileID: 2098801702642325018}
+  - component: {fileID: 583121911}
   m_Layer: 10
   m_Name: HitBox
   m_TagString: Damage
@@ -596,3 +595,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &583121911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6565078844806242776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb07abe75183984993cf3ce3eebf47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmmount: 2

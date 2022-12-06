@@ -76,8 +76,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0028280914, y: -0.0780592}
-  m_Size: {x: 0.23981512, y: 0.3868761}
+  m_Offset: {x: 0.0028280914, y: -0.07206386}
+  m_Size: {x: 0.23981512, y: 0.37488544}
   m_Direction: 0
 --- !u!1 &251997550
 GameObject:
@@ -291,7 +291,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1847561935
 MonoBehaviour:
@@ -343,6 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4881847892698253186}
   - component: {fileID: 4806944930329232751}
+  - component: {fileID: 598316372}
   m_Layer: 10
   m_Name: HitBox
   m_TagString: Damage
@@ -391,6 +392,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &598316372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368383091005964435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb07abe75183984993cf3ce3eebf47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmmount: 1
 --- !u!1 &5084118082731354319
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +486,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 4723107735738678597, guid: f8b30c2afe165d645b54d500a9c30862, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -517,8 +531,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.002558291, y: -0.06907296}
-  m_Size: {x: 0.23622048, y: 0.37948275}
+  m_Offset: {x: 0.002558291, y: -0.07184583}
+  m_Size: {x: 0.23622048, y: 0.37556064}
   m_Direction: 0
 --- !u!50 &6426273666560675242
 Rigidbody2D:
@@ -557,20 +571,7 @@ MonoBehaviour:
   tran: {fileID: 0}
   capCollider: {fileID: 0}
   anim: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  damageLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  speed: 2
-  direction: 1
+  speed: 250
   viewRange: 10
   extraRaycastLength: 6
   hurtBoxCapCollider: {fileID: 237303809}
@@ -580,7 +581,18 @@ MonoBehaviour:
   healthImage: {fileID: 251997551}
   timeBetweenDamage: 0.25
   maxHealth: 3
-  lootDrop: {fileID: 0}
+  runSpeed: 300
+  chaseRange: 3
+  attackRange: 1
+  currentState: 0
+  direction: 1
+  timeBetweenAttacks: 1
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  rayLength: 1
+  scaleX: 2
+  scaleY: 2
 --- !u!114 &383676137
 MonoBehaviour:
   m_ObjectHideFlags: 0
