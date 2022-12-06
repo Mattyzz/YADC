@@ -17,5 +17,6 @@ public class SwordAttack : MonoBehaviour
     {
         Debug.Log("Sword Hit!");
         other.gameObject.GetComponentInParent<EnemyController>().takeDamage(damage);
+        FindObjectOfType<AudioManager>().Play("Damage");
     }
 }

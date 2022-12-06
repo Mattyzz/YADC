@@ -137,6 +137,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             coins++;
+            FindObjectOfType<AudioManager>().Play("Currency");
             collision.gameObject.SetActive(false);
         }
     }

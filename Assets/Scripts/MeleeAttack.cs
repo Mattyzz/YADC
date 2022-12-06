@@ -17,5 +17,6 @@ public class MeleeAttack : MonoBehaviour
     {
         Debug.Log("Melee Hit");
         other.gameObject.GetComponentInParent<HeroKnight>().takeDamage(damage);
+        FindObjectOfType<AudioManager>().Play("Attack");
     }
 }

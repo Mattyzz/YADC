@@ -148,6 +148,8 @@ public class HeroKnight : MonoBehaviour {
         //Attack
         else if(Input.GetKeyDown("z") && m_timeSinceAttack > 0.25f && !m_rolling)
         {
+            //set audio for attack 
+              FindObjectOfType<AudioManager>().Play("Attack");
             m_currentAttack++;
 
             // Loop back to one after third attack
@@ -187,11 +189,13 @@ public class HeroKnight : MonoBehaviour {
         //Jump
         else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
         {
+    
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
             m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             m_groundSensor.Disable(0.2f);
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
 
         //Run
