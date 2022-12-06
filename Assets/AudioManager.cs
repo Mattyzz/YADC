@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour
     }
     void Start(){
         Play("Level1");
+        Play("Level2");
     }
 
     public void Play (string name){

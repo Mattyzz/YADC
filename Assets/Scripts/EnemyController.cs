@@ -200,6 +200,7 @@ public class EnemyController: MonoBehaviour
 
             if (health <= 0)
             {
+                FindObjectOfType<AudioManager>().Play("EnemyDeath");
                 currentState = enemystates.dead;
                 Debug.Log("Mob has Died");
                 StartCoroutine(Die());

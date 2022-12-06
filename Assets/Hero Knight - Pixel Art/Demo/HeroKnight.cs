@@ -134,6 +134,7 @@ public class HeroKnight : MonoBehaviour {
         //Death
         if (Input.GetKeyDown("e") && !m_rolling)
         {
+            FindObjectOfType<AudioManager>().Play("HeroDeath");
             m_animator.SetBool("noBlood", m_noBlood);
             m_animator.SetTrigger("Death");
         }
@@ -149,7 +150,7 @@ public class HeroKnight : MonoBehaviour {
         else if(Input.GetKeyDown("z") && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             //set audio for attack 
-              FindObjectOfType<AudioManager>().Play("Attack");
+            FindObjectOfType<AudioManager>().Play("Attack");
             m_currentAttack++;
 
             // Loop back to one after third attack
@@ -170,6 +171,7 @@ public class HeroKnight : MonoBehaviour {
         // Block
         else if (Input.GetMouseButtonDown(1) && !m_rolling)
         {
+            FindObjectOfType<AudioManager>().Play("Shield");
             m_animator.SetTrigger("Block");
             m_animator.SetBool("IdleBlock", true);
         }
@@ -180,6 +182,7 @@ public class HeroKnight : MonoBehaviour {
         // Roll
         else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
         {
+            FindObjectOfType<AudioManager>().Play("Roll");
             m_rolling = true;
             m_animator.SetTrigger("Roll");
             m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
@@ -220,6 +223,7 @@ public class HeroKnight : MonoBehaviour {
     {
         if (iframe < 0)
         {
+            FindObjectOfType<AudioManager>().Play("Damage");
             Debug.Log("Player Took Damage");
             health -= damageAmmount;
             m_animator.SetTrigger("Hurt");
@@ -229,6 +233,7 @@ public class HeroKnight : MonoBehaviour {
 
             if (health <= 0)
             {
+                FindObjectOfType<AudioManager>().Play("HeroDeath");
                 Debug.Log("Player has Died");
                 hurtBoxCapCollider.isTrigger = false;
                 StartCoroutine(Die());

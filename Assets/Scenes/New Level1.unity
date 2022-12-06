@@ -24698,7 +24698,7 @@ MonoBehaviour:
   - name: Level1
     clip: {fileID: 8300000, guid: 835f3e12f3be04a43b1b154081a7496d, type: 3}
     pitch: 1
-    volume: 2
+    volume: 0.46
     loop: 1
     source: {fileID: 0}
   - name: Jump
@@ -24733,6 +24733,36 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Attack
     clip: {fileID: 8300000, guid: 1dd0ce0aac8dada4d8abb7f98b4bfe5d, type: 3}
+    pitch: 1
+    volume: 2
+    loop: 0
+    source: {fileID: 0}
+  - name: Rold
+    clip: {fileID: 8300000, guid: cc7632cb9bf0b0e42890864000d46799, type: 3}
+    pitch: 1
+    volume: 2
+    loop: 0
+    source: {fileID: 0}
+  - name: Roll
+    clip: {fileID: 8300000, guid: cc7632cb9bf0b0e42890864000d46799, type: 3}
+    pitch: 1
+    volume: 2
+    loop: 0
+    source: {fileID: 0}
+  - name: Shield
+    clip: {fileID: 8300000, guid: 343b943b5ea797e40a4d2952050533ca, type: 3}
+    pitch: 1
+    volume: 2
+    loop: 0
+    source: {fileID: 0}
+  - name: HeroDeath
+    clip: {fileID: 8300000, guid: 00cc6fb5e37b6ba4c84779843fcc699e, type: 3}
+    pitch: 1
+    volume: 2
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyDeath
+    clip: {fileID: 8300000, guid: 254b93351f2eac746b3d0dddb9d9929e, type: 3}
     pitch: 1
     volume: 2
     loop: 0
