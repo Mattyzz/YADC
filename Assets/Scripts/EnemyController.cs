@@ -21,6 +21,9 @@ public class EnemyController: MonoBehaviour
     [SerializeField]
     protected float extraRaycastLength = 6f;// This is the extra length from the rigidbody that the raycast extends to detect the ground. It should be just below the rb in most cases.
 
+    [SerializeField]
+    protected CapsuleCollider2D hurtBoxCapCollider;
+
     public bool isMoving;
 
     public float damage = 1f;
@@ -62,12 +65,15 @@ public class EnemyController: MonoBehaviour
 
         //Iframe timer
         if (iframe > 0) iframe -= Time.deltaTime;
+        else hurtBoxCapCollider.isTrigger = true;
+        patrol();
+        moveRB();
 
     }
         protected void moveRB()
     {
         rb2d.velocity = new Vector2(direction * speed, rb2d.velocity.y);
-        isMoving = true;
+        anim.SetBool("isMoving", true);
     }
 
 
@@ -79,6 +85,7 @@ public class EnemyController: MonoBehaviour
             Debug.Log("Mob Took Damage");
             health -= _damage;
             anim.SetTrigger("In Pain");
+            hurtBoxCapCollider.isTrigger = false;
 
             if (health <= 0)
             {
@@ -87,6 +94,7 @@ public class EnemyController: MonoBehaviour
             }
 
             iframe = timeBetweenDamage;
+
         }
     }
     private IEnumerator Die()

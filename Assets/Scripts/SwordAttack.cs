@@ -15,6 +15,7 @@ public class SwordAttack : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.gameObject.GetComponent<EnemyController>().takeDamage(damage);
+        Debug.Log("Sword Hit!");
+        other.gameObject.GetComponentInParent<EnemyController>().takeDamage(damage);
     }
 }
