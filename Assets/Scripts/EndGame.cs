@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class loadlevel : MonoBehaviour
+public class EndGame : MonoBehaviour
 
 {
-    public int iLevelToLoad;
+    public int i;
 
    
     private void OnCollisionEnter2D(Collision2D collision)
@@ -17,7 +17,7 @@ public class loadlevel : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"));
         { 
             Debug.Log("Box hit");
-            SceneManager.LoadScene(iLevelToLoad, LoadSceneMode.Single);
+            SceneManager.LoadScene(i, LoadSceneMode.Single);
         }
         
     }
