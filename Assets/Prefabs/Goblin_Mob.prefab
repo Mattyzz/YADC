@@ -343,9 +343,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7014931210521126402}
   - component: {fileID: 6318607983734565059}
+  - component: {fileID: 1879682613}
   m_Layer: 10
   m_Name: HitBox
-  m_TagString: Damage
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,6 +392,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1879682613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7843783237151812228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb07abe75183984993cf3ce3eebf47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmmount: 2
 --- !u!1 &8351829660227562602
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,20 +534,7 @@ MonoBehaviour:
   tran: {fileID: 0}
   capCollider: {fileID: 0}
   anim: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  damageLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  speed: 4
-  direction: 1
+  speed: 400
   viewRange: 10
   extraRaycastLength: 6
   hurtBoxCapCollider: {fileID: 828686957}
@@ -543,7 +544,18 @@ MonoBehaviour:
   healthImage: {fileID: 1328905786}
   timeBetweenDamage: 0.25
   maxHealth: 2
-  lootDrop: {fileID: 0}
+  runSpeed: 600
+  chaseRange: 2
+  attackRange: 1
+  currentState: 0
+  direction: 1
+  timeBetweenAttacks: 1
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  rayLength: 1
+  scaleX: 2
+  scaleY: 2
 --- !u!50 &1827040590
 Rigidbody2D:
   serializedVersion: 4
