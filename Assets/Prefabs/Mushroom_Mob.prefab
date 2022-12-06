@@ -76,8 +76,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0028280914, y: -0.0780592}
-  m_Size: {x: 0.23981512, y: 0.3868761}
+  m_Offset: {x: 0.0028280914, y: -0.07206386}
+  m_Size: {x: 0.23981512, y: 0.37488544}
   m_Direction: 0
 --- !u!1 &251997550
 GameObject:
@@ -291,7 +291,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1847561935
 MonoBehaviour:
@@ -531,8 +531,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.002558291, y: -0.06907296}
-  m_Size: {x: 0.23622048, y: 0.37948275}
+  m_Offset: {x: 0.002558291, y: -0.07184583}
+  m_Size: {x: 0.23622048, y: 0.37556064}
   m_Direction: 0
 --- !u!50 &6426273666560675242
 Rigidbody2D:
@@ -571,7 +571,7 @@ MonoBehaviour:
   tran: {fileID: 0}
   capCollider: {fileID: 0}
   anim: {fileID: 0}
-  speed: 300
+  speed: 250
   viewRange: 10
   extraRaycastLength: 6
   hurtBoxCapCollider: {fileID: 237303809}
@@ -590,7 +590,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 2048
-  rayLength: 0
+  rayLength: 1
   scaleX: 2
   scaleY: 2
 --- !u!114 &383676137

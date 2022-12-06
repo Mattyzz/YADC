@@ -291,7 +291,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1871863957
 MonoBehaviour:
@@ -514,7 +514,7 @@ MonoBehaviour:
   tran: {fileID: 0}
   capCollider: {fileID: 0}
   anim: {fileID: 0}
-  speed: 250
+  speed: 200
   viewRange: 10
   extraRaycastLength: 6
   hurtBoxCapCollider: {fileID: 1613613554}
@@ -524,7 +524,7 @@ MonoBehaviour:
   healthImage: {fileID: 391725807}
   timeBetweenDamage: 0.25
   maxHealth: 5
-  runSpeed: 300
+  runSpeed: 250
   chaseRange: 4
   attackRange: 2
   currentState: 0
